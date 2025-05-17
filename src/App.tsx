@@ -1,25 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import ProductList from "./pages/ProductList";
+import ProductDetail from "./pages/ProductDetail";
+import CreateProduct from "./pages/CreateProduct";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+        <a className="navbar-brand" href="/">Tienda</a>
+        <div className="collapse navbar-collapse">
+          <ul className="navbar-nav me-auto">
+            <li className="nav-item">
+              <Link className="nav-link" to="/">Productos</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/crear">Crear producto</Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<ProductList />} />
+        <Route path="/producto/:id" element={<ProductDetail />} />
+        <Route path="/crear" element={<CreateProduct />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
